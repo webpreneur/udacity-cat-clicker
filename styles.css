@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 2rem;
+    display: grid;
+    justify-content: center;
+    align-content: space-between;
+    height: 100vh;
+  }
+  
