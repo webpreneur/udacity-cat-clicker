@@ -5,8 +5,13 @@
     margin: 0;
     padding: 2rem;
     display: grid;
+    gap: 2rem;
     justify-content: center;
     align-content: space-between;
     height: 100vh;
+  }
+  main {
+    display: grid;
+    gap: 2rem;
   }
   

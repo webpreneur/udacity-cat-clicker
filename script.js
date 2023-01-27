@@ -1,9 +1,11 @@
+import { numberToWord } from "./utils/number-to-word.js";
 // https://learn.udacity.com/courses/ud989
 
 class CatClicker extends HTMLElement {
     set counter(count) {
       this._counter = count;
-      this.count.innerText = count;
+      const numAsWord = numberToWord(count);
+      this.count.innerText = `${count} (${numAsWord})`;
     }
     get counter() {
       return this._counter;
@@ -16,6 +18,10 @@ class CatClicker extends HTMLElement {
   
       // Counter
       this.counter = 0;
+    }
+    connectedCallback() {
+        const name = this.getAttribute('cat-name');
+        this.name.innerText = name;
     }
     _render() {
       const template = document.createElement("template");
@@ -34,7 +40,8 @@ class CatClicker extends HTMLElement {
         </style>
         <div>
           <img>
-          <span></span>
+          <span id="counter"></span>
+          <strong id="name"></strong>
         </div>
       `;
       const clone = document.importNode(template.content, true);
@@ -42,7 +49,8 @@ class CatClicker extends HTMLElement {
   
       this.container = this.shadowRoot.querySelector("div");
       this.img = this.shadowRoot.querySelector("img");
-      this.count = this.shadowRoot.querySelector("span");
+      this.count = this.shadowRoot.querySelector("#counter");
+      this.name = this.shadowRoot.querySelector("#name");
   
       this.img.setAttribute(
         "src",
